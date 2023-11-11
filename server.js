@@ -1,40 +1,46 @@
+const path = require('path');
 const express = require('express');
 const session = require('express-session');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const exphbs = require('express-handlebars');
+const routes = require('./controllers');
+const helpers = require('./utils/helpers');
+
 const sequelize = require('./config/connection');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
-// Set up Handlebars.js engine
-const exphbs = require('express-handlebars');
-app.engine('handlebars', exphbs());
-app.set('view engine', 'handlebars');
+// Set up Handlebars.js engine with custom helpers
+const hbs = exphbs.create({ helpers });
 
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));  // Serve the public directory
-
-// Session middleware
 const sess = {
-    secret: 'Super secret secret',
-    cookie: {},
-    resave: false,
-    saveUninitialized: true,
-    store: new SequelizeStore({
-        db: sequelize
-    })
+  secret: 'Super secret secret',
+  cookie: {
+    maxAge: 300000,
+    httpOnly: true,
+    secure: false,
+    sameSite: 'strict',
+  },
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  })
 };
+
 app.use(session(sess));
 
-// Routes
-const routes = require('./controllers');  // Assuming you've a main index.js in controllers that bundles all routes
+// Inform Express.js on which template engine to use
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(routes);
 
-// Start the server after connecting to the database
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => {
-        console.log(`App listening on port ${PORT}!`);
-    });
+  app.listen(PORT, () => console.log('Now listening'));
 });
