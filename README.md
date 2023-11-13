@@ -1,48 +1,44 @@
-# Challenge 14: Tech Blog
-
-A full-stack blogging platform where users can register, post articles, and comment on posts.
-
-## Table of Contents
-
-- [Description](#description)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Demo](#demo)
-- [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
-
-## Description
-
-Weblog is a modern blogging platform where users can share their thoughts and engage with others. The application is designed with usability in mind, allowing users to easily navigate, create posts, comment, and manage their profiles.
-
-## Features
-
-- User Registration and Authentication
-- Personalized Dashboard for Each User
-- CRUD Functionality for Posts and Comments
-- Responsive Design
-- Clean and Intuitive User Interface
+# TechHub
+Objective: Develop a tech-focused blog platform that fosters a learning environment and community interaction for developers.
 
 
-## Demo
+### Homepage:
+Upon visiting the site, users are greeted with the homepage, showcasing a comprehensive list of all tech-related blog posts.
+The navigation menu offers links to different sections of the website.
+User Authentication:
 
-Provide a link to the live demo of the project or screenshots/gifs showcasing the application's functionality.
+Users have the option to create an account using a unique username and password.
+By clicking the "Sign Up" button, user credentials are securely stored, and they are automatically logged in.
+Returning users can access their accounts by logging in with their credentials.
+Once signed in, the "Log In" link transforms into a "Log Out" option.
+Blog Posts:
 
-## Technologies Used
+Users can engage with individual blog posts by clicking on their respective cards.
+Each blog post page displays detailed information, including the post title, content, the username of the creator, and the date of creation.
+Users can view existing comments and contribute their own comments if they are logged in.
+User Dashboard:
 
-- Node.js
-- Express
-- MySQL
-- Sequelize
-- Handlebars
-- Express-Session
-- Connect-Session-Sequelize
+The "Dashboard" serves as a personalized hub, showcasing posts authored by the user.
+Users can conveniently add new blog posts, make edits to existing ones, or remove posts as desired.
+Adding a new post requires specifying a title and content.
+Clicking the "Create Post" button not only publishes the post but also redirects the user to their dashboard for seamless management.
+User Session Management:
 
-## License
+To conclude their session, users can log out by selecting the "Log Out" option.
+For security purposes, if a user remains inactive for 10 minutes, they will need to log in again to perform actions such as adding, updating, or deleting content.
 
-Distributed under the MIT License. See LICENSE for more information.
 
-## Contact
+## Technology
+    - HTML
+    - CSS
+    - JavaScript
+    - Handlebars
+    - jQuery
+    - Express
+    - Node.js
+    - MySQL/Sequelize
+    - Heroku
+
+
+## Deployed Application (Heroku)
+# <a href="https://tech-blog-cf-b75b84d52c37.herokuapp.com/">TechHub</a>
